@@ -17,8 +17,8 @@ YdataTrials = splitTrials(TrialStruct);
 % velocityVec = zeros(length(YdataTrials),1);
 SpeedMatrix = zeros(length(YdataTrials),finalLength);
 for i = 1:length(YdataTrials)
-   YdataTrials(i).YtimePre = YdataTrials(i).YtimePre - YdataTrials(i).YtimePre(1);
-   velocityVec(i,:) = YdataTrials(i).Ypre ./ YdataTrials(i).YtimePre;
+   YdataTrials(i).timePre = YdataTrials(i).timePre - YdataTrials(i).timePre(1);
+   velocityVec(i,:) = YdataTrials(i).Ypre ./ YdataTrials(i).timePre;
    SpeedMatrix(i,:) = bresample(velocityVec(i,:), finalLength);
     
 end

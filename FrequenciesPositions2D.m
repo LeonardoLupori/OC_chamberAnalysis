@@ -25,11 +25,10 @@ hold off
 
 data = openTrackFile();
 sepTrials = separateTrials(data);
-YdataTrials = splitTrials(sepTrials);
-XdataTrials = splitTrialsX(sepTrials);
-Coordinates2 = [];
-Coordinates2(:,1) = cat(1, YdataTrials(:).Ypre);
-Coordinates2(:,2) = cat(1, XdataTrials(:).Xpre);
+  
+dataTrials = splitTrials(sepTrials);
+Coordinates2(:,1) = cat(1, dataTrials(:).Ypre);
+Coordinates2(:,2) = cat(1, dataTrials(:).Xpre);
 
 [ii2,jj2,kk2]=unique(Coordinates2,'rows');
 f2 = histc(kk2,1:numel(jj2));

@@ -2,19 +2,18 @@ clc, clearvars;
 
 data = openTrackFile();
 sepdata = separateTrials(data);
-YdataTrials = splitTrials(sepdata);
-XdataTrials = splitTrialsX(sepdata);
+dataTrials = splitTrials(sepdata);
 
-speedTrialsCell = speedTrials(XdataTrials, YdataTrials);
+speedTrialsCell = speedTrials(dataTrials, dataTrials);
 
 %two matrices to display frames before and after the stimulus appearance on
 %the screen
-preMatrix = nan(length(YdataTrials),max([YdataTrials.preLength]));
-postMatrix = nan(length(YdataTrials),max([YdataTrials.postLength]));
-for i = 1:length(YdataTrials)
-    vecLength = length(YdataTrials(i).Ypre);
+preMatrix = nan(length(dataTrials),max([dataTrials.preLength]));
+postMatrix = nan(length(dataTrials),max([dataTrials.postLength]));
+for i = 1:length(dataTrials)
+    vecLength = length(dataTrials(i).Ypre);
     preMatrix(i,end-vecLength+1:end) = speedTrialsCell{i,1};
-    vecLength = length(YdataTrials(i).Ypost);
+    vecLength = length(dataTrials(i).Ypost);
     postMatrix(i,1:vecLength) = speedTrialsCell{i,2};
 end
 %image is obtained by the alignment of each trial. the line indicates the
@@ -22,7 +21,7 @@ end
 imagesc(cat(2,preMatrix,postMatrix))
 colormap jet
 ax = gca;
-line([max([YdataTrials.preLength])+1 max([YdataTrials.preLength])+1],ax.YLim,'color','k','linewidth',1.4)
+line([max([dataTrials.preLength])+1 max([dataTrials.preLength])+1],ax.YLim,'color','k','linewidth',1.4)
 ax.XLabel.String = 'Tracking frame';
 ax.YLabel.String = 'Trial #';
 

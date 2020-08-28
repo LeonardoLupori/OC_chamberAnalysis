@@ -1,6 +1,6 @@
 %% open files
-%the script creates 2 4D matrices for the 2 genotypes. the 1st dimention
-%contains each day, the 2nd dimention the resampled mean of all the trials of the session,
+% the script creates 2 4D matrices for the 2 genotypes. the 1st dimention
+% contains each day, the 2nd dimention the resampled mean of all the trials of the session,
 % the 3rd dimension all the sessions recorded in that day, the 4th
 % dimension represents each mouse.
 
