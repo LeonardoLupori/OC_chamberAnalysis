@@ -4,7 +4,7 @@ data = openTrackFile();
 sepdata = separateTrials(data);
 dataTrials = splitTrials(sepdata);
 
-speedTrialsCell = speedTrials(dataTrials, dataTrials);
+speedTrialsCell = speedTrialsCell(dataTrials, dataTrials);
 
 %two matrices to display frames before and after the stimulus appearance on
 %the screen

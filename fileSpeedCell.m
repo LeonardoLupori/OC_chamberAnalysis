@@ -1,8 +1,8 @@
-function speedTrialsCell = speedTrials(XdataTrials, YdataTrials)
-%speedTrialsCell = speedTrials(XdataTrials, YdataTrials)
+function speedTrialsCell = fileSpeedCell(XdataTrials, YdataTrials)
+%speedTrialsCell = fileSpeedCell(XdataTrials, YdataTrials)
 %
 %the function returns a n-by-6 cell array containing the module of the
-%velocity vector of the mouse before (1rst column) and qfter (2nd column) the
+%velocity vector of the mouse before (1rst column) and after (2nd column) the
 %activation of each of the n trials. The sign of the speed is stored in the
 %remaining columns: 3,4 sign of pre-trial speed (along x and y dimension respectively);
 %5,6 sign of post-trial speed (along x and y dimension respectively).

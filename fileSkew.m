@@ -13,12 +13,13 @@ end
 
 
 TrialStruct  = separateTrials(data);
-YdataTrials = splitTrials(TrialStruct);
+dataTrials = splitTrials(TrialStruct);
 skewTrackTrials = [];
 normVec = [];
 
 for i = 1:length(YdataTrials)
-    normVec = (YdataTrials(i).Ypre  - double(data.rect(2)))./double(data.rect(4) - data.rect(2));
+    normVec = normalizeCoord(dataTrials(i).Ypre, data.rect);
+    %normVec = (dataTrials(i).Ypre  - double(data.rect(2)))./double(data.rect(4) - data.rect(2));
     skewTrackTrials(i,1) =  skewness(normVec(1:end)) ;
 end
 

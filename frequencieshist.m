@@ -22,7 +22,7 @@ for i = 1:length(nameSubfolder)
         for j =  1:length(nameFile1)
             currF = [sf2 '\' nameFile1{j}];
             tempFileN = split(nameFile1{j},'_');
-            WTmatrix(dayIndex, :, sessionIndex, WTmiceCounter) = countSessionFrequency(currF, edges);
+            WTmatrix(dayIndex, :, sessionIndex, WTmiceCounter) = fileHistFrequency(currF, edges);
             if j ~= length(nameFile1)
                 controlfile = split(nameFile1{j+1},'_');
                 if strcmp(controlfile{1},tempFileN{1}) == 1
@@ -46,7 +46,7 @@ for i = 1:length(nameSubfolder)
         for j =  1:length(nameFile2)
             currF = [sf3 '\' nameFile2{j}];
             tempFileN = split(nameFile2{j},'_');
-            KOmatrix(dayIndex, :, sessionIndex, KOmiceCounter) = countSessionFrequency(currF, edges);
+            KOmatrix(dayIndex, :, sessionIndex, KOmiceCounter) = fileHistFrequency(currF, edges);
             if j ~= length(nameFile1)
                 controlfile = split(nameFile1{j+1},'_');
                 if strcmp(controlfile{1},tempFileN{1}) == 1
