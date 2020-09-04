@@ -23,7 +23,7 @@ dataTrials = splitTrials(dataTrials);
 
 numOfPeaks = zeros(length(dataTrials),1);
 for i = 1:length(dataTrials)
-    dataTrials(i).Ypre = normalizeCoord(dataTrials(i).Ypre, data.rect);
+    [~, dataTrials(i).Ypre] = normalizeCoord(dataTrials(i).Xpre, dataTrials(i).Ypre, data.rect);
     
     if length(dataTrials(i).Ypre) < framelength
         framelength = length(dataTrials(i).Ypre) - mod(length(dataTrials(i).Ypre),2) - 1;

@@ -12,12 +12,13 @@ end
 
 TrialStruct  = separateTrials(data);
 YdataTrials = splitTrials(TrialStruct);
+
 stdTrackTrials = [];
 normVec = [];
 
 for i = 1:length(YdataTrials)
-    normVec = normalizeCoord(dataTrials(i).Ypre, data.rect);
-    %normVec = (YdataTrials(i).Ypre  - double(data.rect(2)))./double(data.rect(4) - data.rect(2));
+    [~, normVec] = normalizeCoord(dataTrials(i).Xpre, dataTrials(i).Ypre, data.rect);
+    % normVec = (YdataTrials(i).Ypre  - double(data.rect(2)))./double(data.rect(4) - data.rect(2));
     stdTrackTrials(i,1) =  std(normVec(1:(end-40))) ;
 end
 
