@@ -14,9 +14,6 @@ dataTrials = splitTrials(dataTrials);
 trialInd = randi(length(dataTrials));
 trial = dataTrials(trialInd);
 
-%%
-filename = 'prova.gif';
-
 f = figure('Position',[23,591,1873,488]);
 axCoord = subplot(1,3,[1,2]);
 axCage = subplot(1,3,3);
@@ -30,7 +27,9 @@ axCage.XTick = []; axCage.YTick = [];
 
 [~, normY] = normalizeCoord(trial.Xpre,trial.Ypre,data.rect);
 [pks,locs,Ysmoothed] = OC_peaks(normY(1:end-20));
-plot(axCoord,Ysmoothed,'Color','b','LineWidth',2)
+[~,~,YsmoothedComplete] = OC_peaks(normY);
+
+plot(axCoord,YsmoothedComplete,'Color','b','LineWidth',2)
 axCoord.XLabel.String = 'Time [frames]';
 axCoord.YLabel.String = 'Y position [normalized]';
 
@@ -43,6 +42,7 @@ hold(axCoord,'on')
 plot(axCoord,locs,pks,'LineStyle','none','Marker','s','Color','r',...
     'LineWidth',1.5)
 l = line(axCoord,[0,0],[0,1],'color','k','lineWidth',1.9);
+yline(axCoord,0.5)
 hold(axCoord,'off')
 
 tail = 60;
@@ -66,8 +66,7 @@ for i = 1:length(trial.Ypre)-1
         hold(axCage,'on')
         plot(axCage,trial.Xpre(i), trial.Ypre(i),'color','g','MarkerFaceColor','g','Marker','s');
     end
-    axCage.Title.String = sprintf('Frame: %i/%i',i,length(trial.Ypre)-1);
-    
+    axCage.Title.String = sprintf('Frame: %i/%i',i,length(trial.Ypre)-1);   
     
     axCage.XLim = [data.rect(1), data.rect(3)];
     axCage.YLim = [data.rect(2), data.rect(4)];
@@ -76,20 +75,19 @@ for i = 1:length(trial.Ypre)-1
     
     axCage.Box = 'on';
     drawnow
-    pause(0.05)
+    pause(0.05)     
     hold(axCage,'off')
     
-    
-    % Capture the plot as an image 
-      frame = getframe(f); 
-      im = frame2im(frame); 
-      [imind,cm] = rgb2ind(im,256); 
-      % Write to the GIF File 
-      if i == 1 
-          imwrite(imind,cm,filename,'gif', 'Loopcount',inf,'DelayTime',1/40,'Compression','jpeg'); 
-      else 
-          imwrite(imind,cm,filename,'gif','WriteMode','append','DelayTime',1/40,'Compression','jpeg'); 
-      end 
+% %     Capture the plot as an image 
+%       frame = getframe(f); 
+%       im = frame2im(frame); 
+%       [imind,cm] = rgb2ind(im,256); 
+%       Write to the GIF File 
+%       if i == 1 
+%           imwrite(imind,cm,filename,'gif', 'Loopcount',inf,'DelayTime',1/40,'Compression','jpeg'); 
+%       else 
+%           imwrite(imind,cm,filename,'gif','WriteMode','append','DelayTime',1/40,'Compression','jpeg'); 
+%       end 
     
     
 end
